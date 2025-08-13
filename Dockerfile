@@ -8,8 +8,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copy csproj and restore as distinct layers
-COPY ["SimpleExpenseTracker/SimpleExpenseTracker.csproj", "SimpleExpenseTracker/"]
-RUN dotnet restore "SimpleExpenseTracker/SimpleExpenseTracker.csproj"
+COPY ["SimpleExpenseTracker.csproj", "./"]
+RUN dotnet restore "SimpleExpenseTracker.csproj"
 
 # Copy everything else and build
 COPY . .
