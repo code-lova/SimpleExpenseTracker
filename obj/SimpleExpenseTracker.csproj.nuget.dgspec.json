@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ebizo/Desktop/SimpleExpenseTracker/SimpleExpenseTracker.csproj": {}
+    "/Users/ebizo/Applications/SimpleExpenseTracker/SimpleExpenseTracker.csproj": {}
   },
   "projects": {
-    "/Users/ebizo/Desktop/SimpleExpenseTracker/SimpleExpenseTracker.csproj": {
+    "/Users/ebizo/Applications/SimpleExpenseTracker/SimpleExpenseTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ebizo/Desktop/SimpleExpenseTracker/SimpleExpenseTracker.csproj",
+        "projectUniqueName": "/Users/ebizo/Applications/SimpleExpenseTracker/SimpleExpenseTracker.csproj",
         "projectName": "SimpleExpenseTracker",
-        "projectPath": "/Users/ebizo/Desktop/SimpleExpenseTracker/SimpleExpenseTracker.csproj",
+        "projectPath": "/Users/ebizo/Applications/SimpleExpenseTracker/SimpleExpenseTracker.csproj",
         "packagesPath": "/Users/ebizo/.nuget/packages/",
-        "outputPath": "/Users/ebizo/Desktop/SimpleExpenseTracker/obj/",
+        "outputPath": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ebizo/.nuget/NuGet/NuGet.Config"

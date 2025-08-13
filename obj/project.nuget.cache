@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/6spL57/G8Y=",
+  "dgSpecHash": "8K9rxQ48vVU=",
   "success": true,
-  "projectFilePath": "/Users/ebizo/Desktop/SimpleExpenseTracker/SimpleExpenseTracker.csproj",
+  "projectFilePath": "/Users/ebizo/Applications/SimpleExpenseTracker/SimpleExpenseTracker.csproj",
   "expectedPackageFiles": [
     "/Users/ebizo/.nuget/packages/blazored.localstorage/4.5.0/blazored.localstorage.4.5.0.nupkg.sha512",
     "/Users/ebizo/.nuget/packages/microsoft.aspnetcore.authorization/9.0.0/microsoft.aspnetcore.authorization.9.0.0.nupkg.sha512",
