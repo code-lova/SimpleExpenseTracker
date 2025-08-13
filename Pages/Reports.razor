@@ -1,0 +1,400 @@
+@page "/reports"
+@inject AuthService AuthService
+@inject TransactionService TransactionService
+@inject CategoryService CategoryService
+@inject NavigationManager Navigation
+@using System.ComponentModel.DataAnnotations
+
+<PageTitle>Reports & Summary - Simple Expense Tracker</PageTitle>
+
+@if (!AuthService.IsAuthenticated)
+{
+    <div class="alert alert-warning">
+        Please <a href="/login">login</a> to view your reports and summary.
+    </div>
+}
+else
+{
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-info">
+                <i class="bi bi-graph-up"></i> Reports & Summary
+            </h1>
+            <div class="btn-group" role="group">
+                <button class="btn btn-outline-info" @onclick="RefreshData">
+                    <i class="bi bi-arrow-clockwise"></i> Refresh
+                </button>
+            </div>
+        </div>
+
+        @if (isLoading)
+        {
+            <div class="text-center">
+                <div class="spinner-border text-info" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        }
+        else
+        {
+            <!-- Overview Cards -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Total Income</h6>
+                                    <h4>$@totalIncome.ToString("N2")</h4>
+                                </div>
+                                <i class="bi bi-arrow-up-circle fs-1 opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-danger text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Total Expenses</h6>
+                                    <h4>$@totalExpenses.ToString("N2")</h4>
+                                </div>
+                                <i class="bi bi-arrow-down-circle fs-1 opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card @(netIncome >= 0 ? "bg-success" : "bg-warning") text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Net Income</h6>
+                                    <h4>$@netIncome.ToString("N2")</h4>
+                                </div>
+                                <i class="bi @(netIncome >= 0 ? "bi-graph-up" : "bi-graph-down") fs-1 opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Transactions</h6>
+                                    <h4>@totalTransactions</h4>
+                                </div>
+                                <i class="bi bi-list-ol fs-1 opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monthly Summary -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="bi bi-calendar-month"></i> This Month Summary</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="text-center">
+                                        <h3 class="text-success">$@monthlyIncome.ToString("N2")</h3>
+                                        <p class="text-muted mb-0">Income</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-center">
+                                        <h3 class="text-danger">$@monthlyExpenses.ToString("N2")</h3>
+                                        <p class="text-muted mb-0">Expenses</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <h4 class="@(monthlyNet >= 0 ? "text-success" : "text-warning")">
+                                    $@monthlyNet.ToString("N2")
+                                </h4>
+                                <p class="text-muted mb-0">Net for @DateTime.Now.ToString("MMMM yyyy")</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="bi bi-pie-chart"></i> Category Breakdown</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="text-danger mb-3">Top Expense Categories</h6>
+                            @if (topExpenseCategories.Any())
+                            {
+                                @foreach (var category in topExpenseCategories.Take(5))
+                                {
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge bg-danger">@category.Key</span>
+                                        <strong>$@category.Value.ToString("N2")</strong>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-muted">No expense data available</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-clock-history"></i> Recent Transactions</h5>
+                </div>
+                <div class="card-body">
+                    @if (recentTransactions.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                        <th>Category</th>
+                                        <th class="text-end">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var transaction in recentTransactions)
+                                    {
+                                        <tr>
+                                            <td>@transaction.Date.ToString("MMM dd, yyyy")</td>
+                                            <td>
+                                                @if (transaction.Type == "Income")
+                                                {
+                                                    <span class="badge bg-success">Income</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-danger">Expense</span>
+                                                }
+                                            </td>
+                                            <td>@transaction.Description</td>
+                                            <td>
+                                                <span class="badge bg-secondary">@transaction.CategoryName</span>
+                                            </td>
+                                            <td class="text-end">
+                                                <span class="@(transaction.Type == "Income" ? "text-success" : "text-danger") fw-bold">
+                                                    @(transaction.Type == "Income" ? "+" : "-")$@transaction.Amount.ToString("N2")
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-4">
+                            <i class="bi bi-inbox display-1 text-muted"></i>
+                            <h5 class="text-muted mt-3">No transactions found</h5>
+                            <p class="text-muted">Start by adding some <a href="/income">income</a> or <a href="/expenses">expenses</a>.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Monthly Trends -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-graph-up-arrow"></i> Monthly Trends (Current & Previous Month)</h5>
+                </div>
+                <div class="card-body">
+                    @if (monthlyTrends.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Month</th>
+                                        <th class="text-end">Income</th>
+                                        <th class="text-end">Expenses</th>
+                                        <th class="text-end">Net</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var trend in monthlyTrends.OrderByDescending(t => t.Month))
+                                    {
+                                        <tr>
+                                            <td>@trend.Month.ToString("MMMM yyyy")</td>
+                                            <td class="text-end text-success">$@trend.Income.ToString("N2")</td>
+                                            <td class="text-end text-danger">$@trend.Expenses.ToString("N2")</td>
+                                            <td class="text-end @(trend.Net >= 0 ? "text-success" : "text-warning") fw-bold">
+                                                $@trend.Net.ToString("N2")
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No trend data available yet. Add some transactions to see monthly trends.</p>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private bool isLoading = true;
+    private decimal totalIncome = 0;
+    private decimal totalExpenses = 0;
+    private decimal netIncome = 0;
+    private int totalTransactions = 0;
+    private decimal monthlyIncome = 0;
+    private decimal monthlyExpenses = 0;
+    private decimal monthlyNet = 0;
+    
+    private List<KeyValuePair<string, decimal>> topExpenseCategories = new();
+    private List<TransactionSummary> recentTransactions = new();
+    private List<MonthlyTrend> monthlyTrends = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!AuthService.IsAuthenticated)
+        {
+            Navigation.NavigateTo("/login");
+            return;
+        }
+
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        try
+        {
+            isLoading = true;
+            
+            if (AuthService.CurrentUser != null)
+            {
+                var userId = AuthService.CurrentUser.Id;
+                var incomeList = await TransactionService.GetIncomeForCurrentUserAsync();
+                var expensesList = await TransactionService.GetExpensesForCurrentUserAsync();
+                var incomeCategories = await CategoryService.GetIncomeCategoriesForCurrentUserAsync();
+                var expenseCategories = await CategoryService.GetExpenseCategoriesForCurrentUserAsync();
+                var categories = incomeCategories.Concat(expenseCategories).ToList();
+
+                // Calculate totals
+                totalIncome = incomeList.Sum(i => i.Amount);
+                totalExpenses = expensesList.Sum(e => e.Amount);
+                netIncome = totalIncome - totalExpenses;
+                totalTransactions = incomeList.Count + expensesList.Count;
+
+                // Calculate monthly data
+                var currentMonth = DateTime.Now;
+                monthlyIncome = incomeList
+                    .Where(i => i.Date.Year == currentMonth.Year && i.Date.Month == currentMonth.Month)
+                    .Sum(i => i.Amount);
+                monthlyExpenses = expensesList
+                    .Where(e => e.Date.Year == currentMonth.Year && e.Date.Month == currentMonth.Month)
+                    .Sum(e => e.Amount);
+                monthlyNet = monthlyIncome - monthlyExpenses;
+
+                // Top expense categories
+                topExpenseCategories = expensesList
+                    .GroupBy(e => categories.FirstOrDefault(c => c.Id == e.CategoryId)?.Name ?? "Unknown")
+                    .Select(g => new KeyValuePair<string, decimal>(g.Key, g.Sum(e => e.Amount)))
+                    .OrderByDescending(kvp => kvp.Value)
+                    .ToList();
+
+                // Recent transactions (last 10)
+                var recentIncomes = incomeList.Select(i => new TransactionSummary
+                {
+                    Date = i.Date,
+                    Type = "Income",
+                    Description = i.Description,
+                    CategoryName = categories.FirstOrDefault(c => c.Id == i.CategoryId)?.Name ?? "Unknown",
+                    Amount = i.Amount
+                });
+
+                var recentExpensesItems = expensesList.Select(e => new TransactionSummary
+                {
+                    Date = e.Date,
+                    Type = "Expense",
+                    Description = e.Description,
+                    CategoryName = categories.FirstOrDefault(c => c.Id == e.CategoryId)?.Name ?? "Unknown",
+                    Amount = e.Amount
+                });
+
+                recentTransactions = recentIncomes.Concat(recentExpensesItems)
+                    .OrderByDescending(t => t.Date)
+                    .Take(10)
+                    .ToList();
+
+                // Monthly trends (current and previous month)
+                monthlyTrends = new List<MonthlyTrend>();
+                for (int i = 1; i >= 0; i--)
+                {
+                    var month = DateTime.Now.AddMonths(-i);
+                    var monthIncome = incomeList
+                        .Where(inc => inc.Date.Year == month.Year && inc.Date.Month == month.Month)
+                        .Sum(inc => inc.Amount);
+                    var monthExpenses = expensesList
+                        .Where(exp => exp.Date.Year == month.Year && exp.Date.Month == month.Month)
+                        .Sum(exp => exp.Amount);
+
+                    monthlyTrends.Add(new MonthlyTrend
+                    {
+                        Month = new DateTime(month.Year, month.Month, 1),
+                        Income = monthIncome,
+                        Expenses = monthExpenses,
+                        Net = monthIncome - monthExpenses
+                    });
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading reports data: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task RefreshData()
+    {
+        await LoadData();
+    }
+
+    public class TransactionSummary
+    {
+        public DateTime Date { get; set; }
+        public string Type { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string CategoryName { get; set; } = string.Empty;
+        public decimal Amount { get; set; }
+    }
+
+    public class MonthlyTrend
+    {
+        public DateTime Month { get; set; }
+        public decimal Income { get; set; }
+        public decimal Expenses { get; set; }
+        public decimal Net { get; set; }
+    }
+}

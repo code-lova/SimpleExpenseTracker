@@ -1,0 +1,43 @@
+@page "/"
+@inject AuthService AuthService
+@inject NavigationManager Navigation
+
+<div class="container-fluid">
+    <h1>Simple Expense Tracker</h1>
+    
+    @if (AuthService.IsAuthenticated)
+    {
+        <p>Welcome back, @AuthService.CurrentUser?.Username!</p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Quick Actions</h5>
+                        <a href="/income" class="btn btn-primary me-2">Manage Income</a>
+                        <button class="btn btn-success" @onclick="LogoutAsync">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p>Please log in to access your expense tracker.</p>
+        <a href="/login" class="btn btn-primary me-2">Login</a>
+        <a href="/register" class="btn btn-outline-primary">Register</a>
+    }
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        // Simple initialization
+        await Task.CompletedTask;
+    }
+
+    private async Task LogoutAsync()
+    {
+        await AuthService.LogoutAsync();
+        Navigation.NavigateTo("/");
+    }
+}

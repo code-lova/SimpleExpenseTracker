@@ -1,0 +1,522 @@
+@page "/income"
+@inject AuthService AuthService
+@inject TransactionService TransactionService
+@inject CategoryService CategoryService
+@inject NotificationService NotificationService
+@inject NavigationManager Navigation
+@using SimpleExpenseTracker.Layout
+
+<PageTitle>Income - Simple Expense Tracker</PageTitle>
+
+@if (!AuthService.IsAuthenticated)
+{
+    <div class="alert alert-warning">
+        Please <a href="/login">login</a> to view your income records.
+    </div>
+}
+else
+{
+    <div class="container-fluid">
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="display-5">Income Management</h1>
+                <p class="lead">Track and manage your income sources.</p>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-success" @onclick="ShowAddForm">
+                    <i class="bi bi-plus-circle"></i> Add Income
+                </button>
+            </div>
+        </div>
+
+        @if (showForm)
+        {
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">@(editingIncome?.Id > 0 ? "Edit" : "Add New") Income</h5>
+                </div>
+                <div class="card-body">
+                    <EditForm Model="incomeForm" OnValidSubmit="HandleSubmit">
+                        <DataAnnotationsValidator />
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description</label>
+                                    <InputText id="description" class="form-control" @bind-Value="incomeForm.Description" />
+                                    <ValidationMessage For="@(() => incomeForm.Description)" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="amount" class="form-label">Amount</label>
+                                    <InputNumber id="amount" class="form-control" @bind-Value="incomeForm.Amount" />
+                                    <ValidationMessage For="@(() => incomeForm.Amount)" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Date</label>
+                                    <InputDate id="date" class="form-control" @bind-Value="incomeForm.Date" />
+                                    <ValidationMessage For="@(() => incomeForm.Date)" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="category" class="form-label">Category</label>
+                                    <InputSelect id="category" class="form-control" @bind-Value="incomeForm.CategoryId">
+                                        <option value="0">Select a category...</option>
+                                        @foreach (var category in categories)
+                                        {
+                                            <option value="@category.Id">@category.Name</option>
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="@(() => incomeForm.CategoryId)" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="notes" class="form-label">Notes (Optional)</label>
+                                    <InputTextArea id="notes" class="form-control" rows="2" @bind-Value="incomeForm.Notes" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        @if (!string.IsNullOrEmpty(errorMessage))
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @errorMessage
+                            </div>
+                        }
+                        
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-success" disabled="@isLoading">
+                                @if (isLoading)
+                                {
+                                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                }
+                                @(editingIncome?.Id > 0 ? "Update" : "Add") Income
+                            </button>
+                            <button type="button" class="btn btn-secondary" @onclick="CancelForm">
+                                Cancel
+                            </button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        }
+
+        <!-- Search and Filter Component -->
+        <SearchFilterComponent 
+            SearchPlaceholder="Search income by description or category..."
+            ShowDateFilter="true"
+            ShowSortOptions="true"
+            ShowActiveFilters="true"
+            SortOptions="sortOptions"
+            TotalCount="allIncome.Count"
+            FilteredCount="filteredIncome.Count"
+            OnSearch="HandleSearch"
+            OnDateFilter="HandleDateFilter"
+            OnDateRange="HandleDateRange"
+            OnSort="HandleSort"
+            OnClearFilters="HandleClearFilters" 
+        />
+
+        <!-- Summary Card -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Income</h5>
+                        <h3 class="mb-0">$@filteredIncome.Sum(i => i.Amount).ToString("N2")</h3>
+                        <small>Filtered results</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-info text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">This Month</h5>
+                        <h3 class="mb-0">$@thisMonthIncome.ToString("N2")</h3>
+                        <small>@DateTime.Now.ToString("MMMM yyyy")</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Average Amount</h5>
+                        <h3 class="mb-0">$@(filteredIncome.Any() ? filteredIncome.Average(i => i.Amount).ToString("N2") : "0.00")</h3>
+                        <small>Per transaction</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Income List -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Income Records (@filteredIncome.Count)</h5>
+            </div>
+            <div class="card-body">
+                @if (filteredIncome.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th>Notes</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var income in incomeList)
+                                {
+                                    <tr>
+                                        <td>@income.Date.ToString("MMM dd, yyyy")</td>
+                                        <td>@income.Description</td>
+                                        <td>
+                                            @if (income.Category != null)
+                                            {
+                                                <span class="badge" style="background-color: @income.Category.Color">
+                                                    @income.Category.Name
+                                                </span>
+                                            }
+                                        </td>
+                                        <td class="text-success fw-bold">$@income.Amount.ToString("N2")</td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(income.Notes))
+                                            {
+                                                <small class="text-muted">@income.Notes</small>
+                                            }
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-outline-primary" @onclick="() => EditIncome(income)">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-outline-danger" @onclick="() => DeleteIncome(income.Id)">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-4">
+                        <i class="bi bi-inbox display-1 text-muted"></i>
+                        <h5 class="text-muted mt-3">No income records found</h5>
+                        <p class="text-muted">Start by adding your first income record.</p>
+                        <button class="btn btn-success" @onclick="ShowAddForm">
+                            <i class="bi bi-plus-circle"></i> Add First Income
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<SimpleExpenseTracker.Data.Income> allIncome = new();
+    private List<SimpleExpenseTracker.Data.Income> filteredIncome = new();
+    private List<SimpleExpenseTracker.Data.Income> incomeList = new();
+    private List<Category> categories = new();
+    private IncomeFormModel incomeForm = new();
+    private SimpleExpenseTracker.Data.Income? editingIncome;
+    private bool showForm = false;
+    private bool isLoading = false;
+    private string errorMessage = string.Empty;
+    
+    private decimal totalIncome = 0;
+    private decimal thisMonthIncome = 0;
+    private decimal averageMonthlyIncome = 0;
+
+    // Filtering variables
+    private string searchTerm = string.Empty;
+    private string dateFilter = string.Empty;
+    private string sortBy = string.Empty;
+    private DateTime? fromDate;
+    private DateTime? toDate;
+
+    // Sort options for the filter component
+    private List<SortOption> sortOptions = new()
+    {
+        new() { Value = "", Text = "Default (Date Descending)" },
+        new() { Value = "date_asc", Text = "Date (Oldest First)" },
+        new() { Value = "date_desc", Text = "Date (Newest First)" },
+        new() { Value = "amount_asc", Text = "Amount (Low to High)" },
+        new() { Value = "amount_desc", Text = "Amount (High to Low)" },
+        new() { Value = "description", Text = "Description (A-Z)" },
+        new() { Value = "category", Text = "Category (A-Z)" }
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!AuthService.IsAuthenticated)
+        {
+            Navigation.NavigateTo("/login");
+            return;
+        }
+
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        try
+        {
+            isLoading = true;
+            
+            allIncome = await TransactionService.GetIncomeForCurrentUserAsync();
+            incomeList = allIncome; // For backward compatibility
+            categories = await CategoryService.GetIncomeCategoriesForCurrentUserAsync();
+            
+            CalculateSummary();
+            ApplyFilters();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Failed to load income data. Please try refreshing the page.";
+            NotificationService.ShowError("Failed to load income. Please try again.");
+            Console.WriteLine($"Error loading income: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private void ApplyFilters()
+    {
+        var filtered = allIncome.AsEnumerable();
+
+        // Text search
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            filtered = filtered.Where(i => 
+                i.Description.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                categories.FirstOrDefault(c => c.Id == i.CategoryId)?.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) == true ||
+                i.Notes?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) == true);
+        }
+
+        // Date filter
+        if (!string.IsNullOrWhiteSpace(dateFilter))
+        {
+            var now = DateTime.Now;
+            filtered = dateFilter switch
+            {
+                "today" => filtered.Where(i => i.Date.Date == now.Date),
+                "week" => filtered.Where(i => i.Date >= now.AddDays(-7)),
+                "month" => filtered.Where(i => i.Date.Year == now.Year && i.Date.Month == now.Month),
+                "year" => filtered.Where(i => i.Date.Year == now.Year),
+                _ => filtered
+            };
+        }
+
+        // Custom date range
+        if (fromDate.HasValue && toDate.HasValue)
+        {
+            filtered = filtered.Where(i => i.Date.Date >= fromDate.Value.Date && i.Date.Date <= toDate.Value.Date);
+        }
+
+        // Sorting
+        filtered = sortBy switch
+        {
+            "date_asc" => filtered.OrderBy(i => i.Date),
+            "date_desc" => filtered.OrderByDescending(i => i.Date),
+            "amount_asc" => filtered.OrderBy(i => i.Amount),
+            "amount_desc" => filtered.OrderByDescending(i => i.Amount),
+            "description" => filtered.OrderBy(i => i.Description),
+            "category" => filtered.OrderBy(i => categories.FirstOrDefault(c => c.Id == i.CategoryId)?.Name ?? ""),
+            _ => filtered.OrderByDescending(i => i.Date)
+        };
+
+        filteredIncome = filtered.ToList();
+        incomeList = filteredIncome; // For backward compatibility
+    }
+
+    // Filter event handlers
+    private async Task HandleSearch(string term)
+    {
+        searchTerm = term;
+        ApplyFilters();
+        await Task.CompletedTask;
+    }
+
+    private async Task HandleDateFilter(string filter)
+    {
+        dateFilter = filter;
+        fromDate = null;
+        toDate = null;
+        ApplyFilters();
+        await Task.CompletedTask;
+    }
+
+    private async Task HandleDateRange(DateRange range)
+    {
+        fromDate = range.From;
+        toDate = range.To;
+        dateFilter = "custom";
+        ApplyFilters();
+        await Task.CompletedTask;
+    }
+
+    private async Task HandleSort(string sort)
+    {
+        sortBy = sort;
+        ApplyFilters();
+        await Task.CompletedTask;
+    }
+
+    private async Task HandleClearFilters()
+    {
+        searchTerm = string.Empty;
+        dateFilter = string.Empty;
+        sortBy = string.Empty;
+        fromDate = null;
+        toDate = null;
+        ApplyFilters();
+        await Task.CompletedTask;
+    }
+
+    private void CalculateSummary()
+    {
+        totalIncome = incomeList.Sum(i => i.Amount);
+        
+        var startOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+        thisMonthIncome = incomeList.Where(i => i.Date >= startOfMonth).Sum(i => i.Amount);
+        
+        var sixMonthsAgo = DateTime.Now.AddMonths(-6);
+        var recentIncome = incomeList.Where(i => i.Date >= sixMonthsAgo).ToList();
+        averageMonthlyIncome = recentIncome.Any() ? recentIncome.Sum(i => i.Amount) / 6 : 0;
+    }
+
+    private void ShowAddForm()
+    {
+        editingIncome = null;
+        incomeForm = new IncomeFormModel();
+        showForm = true;
+        errorMessage = string.Empty;
+    }
+
+    private void EditIncome(SimpleExpenseTracker.Data.Income income)
+    {
+        editingIncome = income;
+        incomeForm = new IncomeFormModel
+        {
+            Description = income.Description,
+            Amount = income.Amount,
+            Date = income.Date,
+            CategoryId = income.CategoryId,
+            Notes = income.Notes
+        };
+        showForm = true;
+        errorMessage = string.Empty;
+    }
+
+    private void CancelForm()
+    {
+        showForm = false;
+        editingIncome = null;
+        incomeForm = new IncomeFormModel();
+        errorMessage = string.Empty;
+    }
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+
+            if (incomeForm.CategoryId == 0)
+            {
+                errorMessage = "Please select a category.";
+                return;
+            }
+
+            var income = new SimpleExpenseTracker.Data.Income
+            {
+                Description = incomeForm.Description,
+                Amount = incomeForm.Amount,
+                Date = incomeForm.Date,
+                CategoryId = incomeForm.CategoryId,
+                Notes = incomeForm.Notes ?? string.Empty
+            };
+
+            bool success;
+            if (editingIncome?.Id > 0)
+            {
+                income.Id = editingIncome.Id;
+                income.UserId = editingIncome.UserId;
+                success = await TransactionService.UpdateIncomeAsync(income);
+            }
+            else
+            {
+                success = await TransactionService.AddIncomeAsync(income);
+            }
+
+            if (success)
+            {
+                CancelForm();
+                await LoadData();
+                StateHasChanged();
+            }
+            else
+            {
+                errorMessage = "Failed to save income. Please try again.";
+            }
+        }
+        catch (Exception)
+        {
+            errorMessage = "An error occurred while saving. Please try again.";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task DeleteIncome(int incomeId)
+    {
+        if (await TransactionService.DeleteIncomeAsync(incomeId))
+        {
+            await LoadData();
+            StateHasChanged();
+        }
+    }
+
+    public class IncomeFormModel
+    {
+        [Required(ErrorMessage = "Description is required")]
+        [StringLength(100, ErrorMessage = "Description must be less than 100 characters")]
+        public string Description { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Amount is required")]
+        [Range(0.01, 999999.99, ErrorMessage = "Amount must be between $0.01 and $999,999.99")]
+        public decimal Amount { get; set; }
+
+        [Required(ErrorMessage = "Date is required")]
+        public DateTime Date { get; set; } = DateTime.Today;
+
+        [Range(1, int.MaxValue, ErrorMessage = "Please select a category")]
+        public int CategoryId { get; set; }
+
+        [StringLength(500, ErrorMessage = "Notes must be less than 500 characters")]
+        public string? Notes { get; set; }
+    }
+}

@@ -1,0 +1,437 @@
+@page "/categories"
+@inject AuthService AuthService
+@inject CategoryService CategoryService
+@inject NavigationManager Navigation
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+
+<PageTitle>Categories - Simple Expense Tracker</PageTitle>
+
+@if (!AuthService.IsAuthenticated)
+{
+    <div class="alert alert-warning">
+        Please <a href="/login">login</a> to manage your categories.
+    </div>
+}
+else
+{
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-primary">
+                <i class="bi bi-tags"></i> Categories Management
+            </h1>
+            <button class="btn btn-success" @onclick="ShowAddForm">
+                <i class="bi bi-plus-circle"></i> Add Category
+            </button>
+        </div>
+
+        @if (isLoading)
+        {
+            <div class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        }
+        else
+        {
+            <!-- Summary Cards -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Income Categories</h6>
+                                    <h4>@incomeCategories.Count</h4>
+                                </div>
+                                <i class="bi bi-arrow-up-circle fs-1 opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-danger text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Expense Categories</h6>
+                                    <h4>@expenseCategories.Count</h4>
+                                </div>
+                                <i class="bi bi-arrow-down-circle fs-1 opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Categories Warning -->
+            @if (!incomeCategories.Any() && !expenseCategories.Any())
+            {
+                <div class="alert alert-info d-flex align-items-center" role="alert">
+                    <i class="bi bi-info-circle fs-4 me-3"></i>
+                    <div class="flex-grow-1">
+                        <h6 class="alert-heading mb-1">No Categories Found</h6>
+                        <p class="mb-2">You don't have any categories yet. Create some default categories to get started quickly!</p>
+                        <button class="btn btn-primary btn-sm" @onclick="CreateDefaultCategories" disabled="@isCreatingDefaults">
+                            @if (isCreatingDefaults)
+                            {
+                                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                            }
+                            <i class="bi bi-magic"></i> Create Default Categories
+                        </button>
+                    </div>
+                </div>
+            }
+
+            <!-- Add/Edit Form -->
+            @if (showForm)
+            {
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">@(editingCategory == null ? "Add New Category" : "Edit Category")</h5>
+                        <button class="btn btn-outline-secondary btn-sm" @onclick="CancelForm">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <EditForm Model="categoryForm" OnValidSubmit="SaveCategory">
+                            <DataAnnotationsValidator />
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Category Name *</label>
+                                        <InputText id="name" class="form-control" @bind-Value="categoryForm.Name" />
+                                        <ValidationMessage For="@(() => categoryForm.Name)" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="type" class="form-label">Type *</label>
+                                        <InputSelect id="type" class="form-select" @bind-Value="categoryForm.Type">
+                                            <option value="">Select type</option>
+                                            <option value="Income">Income</option>
+                                            <option value="Expense">Expense</option>
+                                        </InputSelect>
+                                        <ValidationMessage For="@(() => categoryForm.Type)" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <InputTextArea id="description" class="form-control" rows="3" @bind-Value="categoryForm.Description" />
+                                <ValidationMessage For="@(() => categoryForm.Description)" />
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(errorMessage))
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    @errorMessage
+                                </div>
+                            }
+
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-success" disabled="@isSubmitting">
+                                    @if (isSubmitting)
+                                    {
+                                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    }
+                                    <i class="bi bi-check-circle"></i> @(editingCategory == null ? "Add Category" : "Update Category")
+                                </button>
+                                <button type="button" class="btn btn-secondary" @onclick="CancelForm">
+                                    <i class="bi bi-x-circle"></i> Cancel
+                                </button>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            }
+
+            <!-- Categories List -->
+            <div class="row">
+                <!-- Income Categories -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="bi bi-arrow-up-circle"></i> Income Categories</h5>
+                        </div>
+                        <div class="card-body">
+                            @if (incomeCategories.Any())
+                            {
+                                <div class="list-group list-group-flush">
+                                    @foreach (var category in incomeCategories)
+                                    {
+                                        <div class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold">@category.Name</div>
+                                                @if (!string.IsNullOrEmpty(category.Description))
+                                                {
+                                                    <small class="text-muted">@category.Description</small>
+                                                }
+                                            </div>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <button class="btn btn-outline-primary btn-sm" @onclick="() => EditCategory(category)" title="Edit">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-outline-danger btn-sm" @onclick="() => DeleteCategory(category)" title="Delete">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="text-center py-3">
+                                    <i class="bi bi-inbox display-6 text-muted"></i>
+                                    <p class="text-muted mt-2">No income categories yet</p>
+                                    <button class="btn btn-success btn-sm" @onclick='() => ShowAddFormWithType("Income")'>
+                                        <i class="bi bi-plus-circle"></i> Add Income Category
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expense Categories -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0"><i class="bi bi-arrow-down-circle"></i> Expense Categories</h5>
+                        </div>
+                        <div class="card-body">
+                            @if (expenseCategories.Any())
+                            {
+                                <div class="list-group list-group-flush">
+                                    @foreach (var category in expenseCategories)
+                                    {
+                                        <div class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold">@category.Name</div>
+                                                @if (!string.IsNullOrEmpty(category.Description))
+                                                {
+                                                    <small class="text-muted">@category.Description</small>
+                                                }
+                                            </div>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <button class="btn btn-outline-primary btn-sm" @onclick="() => EditCategory(category)" title="Edit">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-outline-danger btn-sm" @onclick="() => DeleteCategory(category)" title="Delete">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="text-center py-3">
+                                    <i class="bi bi-inbox display-6 text-muted"></i>
+                                    <p class="text-muted mt-2">No expense categories yet</p>
+                                    <button class="btn btn-danger btn-sm" @onclick='() => ShowAddFormWithType("Expense")'>
+                                        <i class="bi bi-plus-circle"></i> Add Expense Category
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<Category> incomeCategories = new();
+    private List<Category> expenseCategories = new();
+    private bool isLoading = true;
+    private bool showForm = false;
+    private bool isSubmitting = false;
+    private bool isCreatingDefaults = false;
+    private string errorMessage = string.Empty;
+    
+    private Category? editingCategory;
+    private CategoryFormModel categoryForm = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!AuthService.IsAuthenticated)
+        {
+            Navigation.NavigateTo("/login");
+            return;
+        }
+
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        try
+        {
+            isLoading = true;
+            
+            incomeCategories = await CategoryService.GetIncomeCategoriesForCurrentUserAsync();
+            expenseCategories = await CategoryService.GetExpenseCategoriesForCurrentUserAsync();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Failed to load categories. Please try refreshing the page.";
+            Console.WriteLine($"Error loading categories: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private void ShowAddForm()
+    {
+        editingCategory = null;
+        categoryForm = new CategoryFormModel();
+        showForm = true;
+        errorMessage = string.Empty;
+    }
+
+    private void ShowAddFormWithType(string type)
+    {
+        editingCategory = null;
+        categoryForm = new CategoryFormModel { Type = type };
+        showForm = true;
+        errorMessage = string.Empty;
+    }
+
+    private void EditCategory(Category category)
+    {
+        editingCategory = category;
+        categoryForm = new CategoryFormModel
+        {
+            Name = category.Name,
+            Type = category.Type,
+            Description = category.Description
+        };
+        showForm = true;
+        errorMessage = string.Empty;
+    }
+
+    private void CancelForm()
+    {
+        showForm = false;
+        editingCategory = null;
+        categoryForm = new CategoryFormModel();
+        errorMessage = string.Empty;
+    }
+
+    private async Task SaveCategory()
+    {
+        try
+        {
+            isSubmitting = true;
+            errorMessage = string.Empty;
+
+            // Check if category name already exists
+            var incomeCategories = await CategoryService.GetIncomeCategoriesForCurrentUserAsync();
+            var expenseCategories = await CategoryService.GetExpenseCategoriesForCurrentUserAsync();
+            var existingCategories = incomeCategories.Concat(expenseCategories);
+            if (editingCategory == null && existingCategories.Any(c => c.Name.Equals(categoryForm.Name, StringComparison.OrdinalIgnoreCase)))
+            {
+                errorMessage = "A category with this name already exists.";
+                return;
+            }
+
+            if (editingCategory == null)
+            {
+                // Add new category
+                var newCategory = new Category
+                {
+                    Name = categoryForm.Name,
+                    Type = categoryForm.Type,
+                    Description = categoryForm.Description
+                };
+
+                await CategoryService.AddCategoryAsync(newCategory);
+            }
+            else
+            {
+                // Update existing category
+                editingCategory.Name = categoryForm.Name;
+                editingCategory.Type = categoryForm.Type;
+                editingCategory.Description = categoryForm.Description;
+
+                await CategoryService.UpdateCategoryAsync(editingCategory);
+            }
+
+            // Refresh data and hide form
+            await LoadData();
+            CancelForm();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "An error occurred while saving the category. Please try again.";
+            Console.WriteLine($"Error saving category: {ex.Message}");
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+
+    private async Task DeleteCategory(Category category)
+    {
+        try
+        {
+            // Note: In a real application, you might want to check if the category is being used
+            // by any transactions before allowing deletion
+            await CategoryService.DeleteCategoryAsync(category.Id);
+            await LoadData();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "An error occurred while deleting the category. Please try again.";
+            Console.WriteLine($"Error deleting category: {ex.Message}");
+        }
+    }
+
+    private async Task CreateDefaultCategories()
+    {
+        try
+        {
+            isCreatingDefaults = true;
+            errorMessage = string.Empty;
+
+            if (AuthService.CurrentUser != null)
+            {
+                await CategoryService.CreateDefaultCategoriesForUserAsync(AuthService.CurrentUser.Id);
+                await LoadData();
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "An error occurred while creating default categories. Please try again.";
+            Console.WriteLine($"Error creating default categories: {ex.Message}");
+        }
+        finally
+        {
+            isCreatingDefaults = false;
+        }
+    }
+
+    public class CategoryFormModel
+    {
+        [Required(ErrorMessage = "Category name is required")]
+        [StringLength(100, ErrorMessage = "Category name must be less than 100 characters")]
+        public string Name { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Please select a category type")]
+        public string Type { get; set; } = string.Empty;
+
+        [StringLength(500, ErrorMessage = "Description must be less than 500 characters")]
+        public string? Description { get; set; }
+    }
+}

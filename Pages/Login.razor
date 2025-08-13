@@ -1,0 +1,119 @@
+@page "/login"
+@inject AuthService AuthService
+@inject NavigationManager Navigation
+@inject NotificationService NotificationService
+@using Microsoft.AspNetCore.Components.Web
+
+<PageTitle>Login - Simple Expense Tracker</PageTitle>
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">Login</h3>
+                
+                <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+                    <DataAnnotationsValidator />
+                    
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <InputText id="username" class="form-control" @bind-Value="loginModel.Username" />
+                        <ValidationMessage For="@(() => loginModel.Username)" />
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <InputText id="password" type="password" class="form-control" @bind-Value="loginModel.Password" />
+                        <ValidationMessage For="@(() => loginModel.Password)" />
+                    </div>
+                    
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @errorMessage
+                        </div>
+                    }
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary" disabled="@isLoading">
+                            @if (isLoading)
+                            {
+                                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                            }
+                            Login
+                        </button>
+                    </div>
+                </EditForm>
+                
+                <hr>
+                <div class="text-center">
+                    <p class="mb-0">Don't have an account? <a href="/register">Register here</a></p>
+                </div>
+                
+                @* <div class="mt-3">
+                    <small class="text-muted">
+                        <strong>Demo Account:</strong><br>
+                        Username: demo<br>
+                        Password: password123
+                    </small>
+                </div> *@
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private LoginModel loginModel = new();
+    private string errorMessage = string.Empty;
+    private bool isLoading = false;
+
+    protected override void OnInitialized()
+    {
+        // Redirect if already authenticated
+        if (AuthService.IsAuthenticated)
+        {
+            Navigation.NavigateTo("/");
+        }
+    }
+
+    private async Task HandleLogin()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+            
+            var result = await AuthService.LoginAsync(loginModel.Username, loginModel.Password);
+            
+            if (result.Success)
+            {
+                NotificationService.ShowSuccess($"Welcome back, {result.User?.Username}!");
+                Navigation.NavigateTo("/");
+            }
+            else
+            {
+                errorMessage = result.Error;
+                NotificationService.ShowError(result.Error);
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "An error occurred while logging in. Please try again.";
+            NotificationService.ShowError("An unexpected error occurred. Please try again.");
+            Console.WriteLine($"Login error: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "Username is required")]
+        public string Username { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Password is required")]
+        public string Password { get; set; } = string.Empty;
+    }
+}

@@ -1,0 +1,607 @@
+@page "/expenses"
+@inject AuthService AuthService
+@inject TransactionService TransactionService
+@inject CategoryService CategoryService
+@inject NotificationService NotificationService
+@inject NavigationManager Navigation
+@using System.ComponentModel.DataAnnotations
+@using SimpleExpenseTracker.Layout
+
+<PageTitle>Expenses - Simple Expense Tracker</PageTitle>
+
+@if (!AuthService.IsAuthenticated)
+{
+    <div class="alert alert-warning">
+        Please <a href="/login">login</a> to view your expense records.
+    </div>
+}
+else
+{
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-danger">
+                <i class="bi bi-credit-card"></i> Expense Management
+            </h1>
+            <button class="btn btn-danger" @onclick="ShowAddForm">
+                <i class="bi bi-plus-circle"></i> Add Expense
+            </button>
+        </div>
+
+        @if (isLoading)
+        {
+            <div class="text-center">
+                <div class="spinner-border text-danger" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        }
+        else
+        {
+            <!-- Search and Filter Component -->
+            <SearchFilterComponent 
+                SearchPlaceholder="Search expenses by description or category..."
+                ShowDateFilter="true"
+                ShowSortOptions="true"
+                ShowActiveFilters="true"
+                SortOptions="sortOptions"
+                TotalCount="allExpenses.Count"
+                FilteredCount="filteredExpenses.Count"
+                OnSearch="HandleSearch"
+                OnDateFilter="HandleDateFilter"
+                OnDateRange="HandleDateRange"
+                OnSort="HandleSort"
+                OnClearFilters="HandleClearFilters" 
+            />
+
+            <!-- Summary Cards -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card bg-danger text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Total Expenses</h6>
+                                    <h4>$@filteredExpenses.Sum(e => e.Amount).ToString("N2")</h4>
+                                </div>
+                                <i class="bi bi-arrow-down-circle fs-1 opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">This Month</h6>
+                                    <h4>$@thisMonthExpenses.ToString("N2")</h4>
+                                </div>
+                                <i class="bi bi-calendar-month fs-1 opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-secondary text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Average Amount</h6>
+                                    <h4>$@(filteredExpenses.Any() ? filteredExpenses.Average(e => e.Amount).ToString("N2") : "0.00")</h4>
+                                </div>
+                                <i class="bi bi-graph-up fs-1 opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">This Month</h6>
+                                    <h4>$@monthlyExpenses.ToString("N2")</h4>
+                                </div>
+                                <i class="bi bi-calendar-month fs-1 opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-dark text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Record Count</h6>
+                                    <h4>@expensesList.Count</h4>
+                                </div>
+                                <i class="bi bi-list-ol fs-1 opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add/Edit Form -->
+            @if (showForm)
+            {
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">@(editingExpense == null ? "Add New Expense" : "Edit Expense")</h5>
+                        <button class="btn btn-outline-secondary btn-sm" @onclick="CancelForm">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <EditForm Model="expenseForm" OnValidSubmit="SaveExpense">
+                            <DataAnnotationsValidator />
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Description *</label>
+                                        <InputText id="description" class="form-control" @bind-Value="expenseForm.Description" />
+                                        <ValidationMessage For="@(() => expenseForm.Description)" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="amount" class="form-label">Amount *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <InputNumber id="amount" class="form-control" @bind-Value="expenseForm.Amount" step="0.01" />
+                                        </div>
+                                        <ValidationMessage For="@(() => expenseForm.Amount)" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="date" class="form-label">Date *</label>
+                                        <InputDate id="date" class="form-control" @bind-Value="expenseForm.Date" />
+                                        <ValidationMessage For="@(() => expenseForm.Date)" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="category" class="form-label">Category *</label>
+                                        <InputSelect id="category" class="form-select" @bind-Value="expenseForm.CategoryId">
+                                            <option value="">Select a category</option>
+                                            @foreach (var category in categories)
+                                            {
+                                                <option value="@category.Id">@category.Name</option>
+                                            }
+                                        </InputSelect>
+                                        <ValidationMessage For="@(() => expenseForm.CategoryId)" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="notes" class="form-label">Notes</label>
+                                <InputTextArea id="notes" class="form-control" rows="3" @bind-Value="expenseForm.Notes" />
+                                <ValidationMessage For="@(() => expenseForm.Notes)" />
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(errorMessage))
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    @errorMessage
+                                </div>
+                            }
+
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-danger" disabled="@isSubmitting">
+                                    @if (isSubmitting)
+                                    {
+                                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    }
+                                    <i class="bi bi-check-circle"></i> @(editingExpense == null ? "Add Expense" : "Update Expense")
+                                </button>
+                                <button type="button" class="btn btn-secondary" @onclick="CancelForm">
+                                    <i class="bi bi-x-circle"></i> Cancel
+                                </button>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            }
+
+            <!-- Expenses List -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-list"></i> Expense Records</h5>
+                </div>
+                <div class="card-body">
+                    @if (expensesList.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Category</th>
+                                        <th class="text-end">Amount</th>
+                                        <th>Notes</th>
+                                        <th class="text-center" style="width: 120px;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var expense in expensesList.OrderByDescending(e => e.Date))
+                                    {
+                                        <tr>
+                                            <td>@expense.Date.ToString("MMM dd, yyyy")</td>
+                                            <td>
+                                                <strong>@expense.Description</strong>
+                                            </td>
+                                            <td>
+                                                @{
+                                                    var category = categories.FirstOrDefault(c => c.Id == expense.CategoryId);
+                                                }
+                                                @if (category != null)
+                                                {
+                                                    <span class="badge bg-danger">@category.Name</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary">Unknown</span>
+                                                }
+                                            </td>
+                                            <td class="text-end">
+                                                <span class="text-danger fw-bold">$@expense.Amount.ToString("N2")</span>
+                                            </td>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(expense.Notes))
+                                                {
+                                                    <small class="text-muted">@expense.Notes</small>
+                                                }
+                                                else
+                                                {
+                                                    <small class="text-muted fst-italic">No notes</small>
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="btn-group btn-group-sm" role="group">
+                                                    <button class="btn btn-outline-primary" @onclick="() => EditExpense(expense)" title="Edit">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger" @onclick="() => DeleteExpense(expense)" title="Delete">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-4">
+                            <i class="bi bi-inbox display-1 text-muted"></i>
+                            <h5 class="text-muted mt-3">No expense records found</h5>
+                            <p class="text-muted">Start by adding your first expense record.</p>
+                            <button class="btn btn-danger" @onclick="ShowAddForm">
+                                <i class="bi bi-plus-circle"></i> Add First Expense
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<Expense> allExpenses = new();
+    private List<Expense> filteredExpenses = new();
+    private List<Expense> expensesList = new();
+    private List<Category> categories = new();
+    private bool isLoading = true;
+    private bool showForm = false;
+    private bool isSubmitting = false;
+    private string errorMessage = string.Empty;
+    private decimal totalExpenses = 0;
+    private decimal monthlyExpenses = 0;
+    private decimal thisMonthExpenses = 0;
+    
+    private Expense? editingExpense;
+    private ExpenseFormModel expenseForm = new();
+
+    // Filtering variables
+    private string searchTerm = string.Empty;
+    private string dateFilter = string.Empty;
+    private string sortBy = string.Empty;
+    private DateTime? fromDate;
+    private DateTime? toDate;
+
+    // Sort options for the filter component
+    private List<SortOption> sortOptions = new()
+    {
+        new() { Value = "", Text = "Default (Date Descending)" },
+        new() { Value = "date_asc", Text = "Date (Oldest First)" },
+        new() { Value = "date_desc", Text = "Date (Newest First)" },
+        new() { Value = "amount_asc", Text = "Amount (Low to High)" },
+        new() { Value = "amount_desc", Text = "Amount (High to Low)" },
+        new() { Value = "description", Text = "Description (A-Z)" },
+        new() { Value = "category", Text = "Category (A-Z)" }
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!AuthService.IsAuthenticated)
+        {
+            Navigation.NavigateTo("/login");
+            return;
+        }
+
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        try
+        {
+            isLoading = true;
+            
+            if (AuthService.CurrentUser != null)
+            {
+                allExpenses = await TransactionService.GetExpensesForCurrentUserAsync();
+                expensesList = allExpenses; // For backward compatibility
+                categories = await CategoryService.GetExpenseCategoriesForCurrentUserAsync();
+                
+                // Calculate summaries
+                totalExpenses = allExpenses.Sum(e => e.Amount);
+                var currentMonth = DateTime.Now;
+                thisMonthExpenses = allExpenses
+                    .Where(e => e.Date.Year == currentMonth.Year && e.Date.Month == currentMonth.Month)
+                    .Sum(e => e.Amount);
+                
+                // Apply initial filters
+                ApplyFilters();
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Failed to load expense data. Please try refreshing the page.";
+            NotificationService.ShowError("Failed to load expenses. Please try again.");
+            Console.WriteLine($"Error loading expense data: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private void ApplyFilters()
+    {
+        var filtered = allExpenses.AsEnumerable();
+
+        // Text search
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            filtered = filtered.Where(e => 
+                e.Description.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                categories.FirstOrDefault(c => c.Id == e.CategoryId)?.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) == true ||
+                e.Notes?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) == true);
+        }
+
+        // Date filter
+        if (!string.IsNullOrWhiteSpace(dateFilter))
+        {
+            var now = DateTime.Now;
+            filtered = dateFilter switch
+            {
+                "today" => filtered.Where(e => e.Date.Date == now.Date),
+                "week" => filtered.Where(e => e.Date >= now.AddDays(-7)),
+                "month" => filtered.Where(e => e.Date.Year == now.Year && e.Date.Month == now.Month),
+                "year" => filtered.Where(e => e.Date.Year == now.Year),
+                _ => filtered
+            };
+        }
+
+        // Custom date range
+        if (fromDate.HasValue && toDate.HasValue)
+        {
+            filtered = filtered.Where(e => e.Date.Date >= fromDate.Value.Date && e.Date.Date <= toDate.Value.Date);
+        }
+
+        // Sorting
+        filtered = sortBy switch
+        {
+            "date_asc" => filtered.OrderBy(e => e.Date),
+            "date_desc" => filtered.OrderByDescending(e => e.Date),
+            "amount_asc" => filtered.OrderBy(e => e.Amount),
+            "amount_desc" => filtered.OrderByDescending(e => e.Amount),
+            "description" => filtered.OrderBy(e => e.Description),
+            "category" => filtered.OrderBy(e => categories.FirstOrDefault(c => c.Id == e.CategoryId)?.Name ?? ""),
+            _ => filtered.OrderByDescending(e => e.Date)
+        };
+
+        filteredExpenses = filtered.ToList();
+        expensesList = filteredExpenses; // For backward compatibility
+    }
+
+    // Filter event handlers
+    private async Task HandleSearch(string term)
+    {
+        searchTerm = term;
+        ApplyFilters();
+        await Task.CompletedTask;
+    }
+
+    private async Task HandleDateFilter(string filter)
+    {
+        dateFilter = filter;
+        fromDate = null;
+        toDate = null;
+        ApplyFilters();
+        await Task.CompletedTask;
+    }
+
+    private async Task HandleDateRange(DateRange range)
+    {
+        fromDate = range.From;
+        toDate = range.To;
+        dateFilter = "custom";
+        ApplyFilters();
+        await Task.CompletedTask;
+    }
+
+    private async Task HandleSort(string sort)
+    {
+        sortBy = sort;
+        ApplyFilters();
+        await Task.CompletedTask;
+    }
+
+    private async Task HandleClearFilters()
+    {
+        searchTerm = string.Empty;
+        dateFilter = string.Empty;
+        sortBy = string.Empty;
+        fromDate = null;
+        toDate = null;
+        ApplyFilters();
+        await Task.CompletedTask;
+    }
+
+    private void ShowAddForm()
+    {
+        editingExpense = null;
+        expenseForm = new ExpenseFormModel();
+        showForm = true;
+        errorMessage = string.Empty;
+    }
+
+    private void EditExpense(Expense expense)
+    {
+        editingExpense = expense;
+        expenseForm = new ExpenseFormModel
+        {
+            Description = expense.Description,
+            Amount = expense.Amount,
+            Date = expense.Date,
+            CategoryId = expense.CategoryId,
+            Notes = expense.Notes
+        };
+        showForm = true;
+        errorMessage = string.Empty;
+    }
+
+    private void CancelForm()
+    {
+        showForm = false;
+        editingExpense = null;
+        expenseForm = new ExpenseFormModel();
+        errorMessage = string.Empty;
+    }
+
+    private async Task SaveExpense()
+    {
+        try
+        {
+            isSubmitting = true;
+            errorMessage = string.Empty;
+
+            if (AuthService.CurrentUser == null)
+            {
+                errorMessage = "You must be logged in to save expenses.";
+                NotificationService.ShowError("Please log in to save expenses.");
+                return;
+            }
+
+            if (editingExpense == null)
+            {
+                // Add new expense
+                var newExpense = new Expense
+                {
+                    UserId = AuthService.CurrentUser.Id,
+                    Description = expenseForm.Description,
+                    Amount = expenseForm.Amount,
+                    Date = expenseForm.Date,
+                    CategoryId = expenseForm.CategoryId,
+                    Notes = expenseForm.Notes
+                };
+
+                await TransactionService.AddExpenseAsync(newExpense);
+                NotificationService.ShowSuccess($"Expense '{expenseForm.Description}' added successfully!");
+            }
+            else
+            {
+                // Update existing expense
+                editingExpense.Description = expenseForm.Description;
+                editingExpense.Amount = expenseForm.Amount;
+                editingExpense.Date = expenseForm.Date;
+                editingExpense.CategoryId = expenseForm.CategoryId;
+                editingExpense.Notes = expenseForm.Notes;
+
+                await TransactionService.UpdateExpenseAsync(editingExpense);
+                NotificationService.ShowSuccess($"Expense '{expenseForm.Description}' updated successfully!");
+            }
+
+            // Refresh data and hide form
+            await LoadData();
+            CancelForm();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "An error occurred while saving the expense. Please try again.";
+            NotificationService.ShowError("Failed to save expense. Please try again.");
+            Console.WriteLine($"Error saving expense: {ex.Message}");
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+
+    private async Task DeleteExpense(Expense expense)
+    {
+        try
+        {
+            if (AuthService.CurrentUser == null)
+            {
+                errorMessage = "You must be logged in to delete expenses.";
+                NotificationService.ShowError("Please log in to delete expenses.");
+                return;
+            }
+
+            await TransactionService.DeleteExpenseAsync(expense.Id);
+            NotificationService.ShowSuccess($"Expense '{expense.Description}' deleted successfully!");
+            await LoadData();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "An error occurred while deleting the expense. Please try again.";
+            NotificationService.ShowError("Failed to delete expense. Please try again.");
+            Console.WriteLine($"Error deleting expense: {ex.Message}");
+        }
+    }
+
+    public class ExpenseFormModel
+    {
+        [Required(ErrorMessage = "Description is required")]
+        [StringLength(200, ErrorMessage = "Description must be less than 200 characters")]
+        public string Description { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Amount is required")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Amount must be greater than 0")]
+        public decimal Amount { get; set; }
+
+        [Required(ErrorMessage = "Date is required")]
+        public DateTime Date { get; set; } = DateTime.Today;
+
+        [Required(ErrorMessage = "Please select a category")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please select a valid category")]
+        public int CategoryId { get; set; }
+
+        [StringLength(500, ErrorMessage = "Notes must be less than 500 characters")]
+        public string? Notes { get; set; }
+    }
+}
