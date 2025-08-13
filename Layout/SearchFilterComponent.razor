@@ -1,0 +1,149 @@
+@{
+    // Remove the generic type parameter
+}
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="bi bi-search"></i>
+            </span>
+            <input type="text" class="form-control" placeholder="@SearchPlaceholder" 
+                   @bind="searchTerm" @bind:event="oninput" @onkeyup="OnSearchChanged" />
+            @if (!string.IsNullOrEmpty(searchTerm))
+            {
+                <button class="btn btn-outline-secondary" type="button" @onclick="ClearSearch">
+                    <i class="bi bi-x"></i>
+                </button>
+            }
+        </div>
+    </div>
+    
+    @if (ShowDateFilter)
+    {
+        <div class="col-md-3">
+            <select class="form-select" @bind="selectedDateFilter">
+                <option value="">All Time</option>
+                <option value="today">Today</option>
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+                <option value="year">This Year</option>
+                <option value="custom">Custom Range</option>
+            </select>
+        </div>
+    }
+    
+    @if (ShowSortOptions)
+    {
+        <div class="col-md-3">
+            <select class="form-select" @bind="selectedSort">
+                @foreach (var option in SortOptions)
+                {
+                    <option value="@option.Value">@option.Text</option>
+                }
+            </select>
+        </div>
+    }
+</div>
+
+@if (selectedDateFilter == "custom")
+{
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label class="form-label">From Date</label>
+            <input type="date" class="form-control" @bind="fromDate" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">To Date</label>
+            <input type="date" class="form-control" @bind="toDate" />
+        </div>
+    </div>
+}
+
+@if (ShowActiveFilters)
+{
+    <div class="mb-3">
+        <small class="text-muted">
+            Showing @FilteredCount of @TotalCount items
+            @if (!string.IsNullOrEmpty(searchTerm) || !string.IsNullOrEmpty(selectedDateFilter) || !string.IsNullOrEmpty(selectedSort))
+            {
+                <span> | </span>
+                <button class="btn btn-link btn-sm p-0" @onclick="ClearAllFilters">
+                    <i class="bi bi-x-circle"></i> Clear all filters
+                </button>
+            }
+        </small>
+    </div>
+}
+
+@code {
+    [Parameter] public string SearchPlaceholder { get; set; } = "Search...";
+    [Parameter] public bool ShowDateFilter { get; set; } = false;
+    [Parameter] public bool ShowSortOptions { get; set; } = false;
+    [Parameter] public bool ShowActiveFilters { get; set; } = true;
+    [Parameter] public List<SortOption> SortOptions { get; set; } = new();
+    [Parameter] public int TotalCount { get; set; }
+    [Parameter] public int FilteredCount { get; set; }
+    
+    [Parameter] public EventCallback<string> OnSearch { get; set; }
+    [Parameter] public EventCallback<string> OnDateFilter { get; set; }
+    [Parameter] public EventCallback<DateRange> OnDateRange { get; set; }
+    [Parameter] public EventCallback<string> OnSort { get; set; }
+    [Parameter] public EventCallback OnClearFilters { get; set; }
+
+    private string searchTerm = string.Empty;
+    private string _selectedDateFilter = string.Empty;
+    private string _selectedSort = string.Empty;
+    private DateTime? fromDate;
+    private DateTime? toDate;
+
+    private string selectedDateFilter
+    {
+        get => _selectedDateFilter;
+        set
+        {
+            _selectedDateFilter = value;
+            _ = OnDateFilter.InvokeAsync(value);
+        }
+    }
+
+    private string selectedSort
+    {
+        get => _selectedSort;
+        set
+        {
+            _selectedSort = value;
+            _ = OnSort.InvokeAsync(value);
+        }
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (fromDate.HasValue && toDate.HasValue)
+        {
+            _ = OnDateRange.InvokeAsync(new DateRange { From = fromDate.Value, To = toDate.Value });
+        }
+    }
+
+    private async Task OnSearchChanged()
+    {
+        await OnSearch.InvokeAsync(searchTerm);
+    }
+
+    private async Task ClearSearch()
+    {
+        searchTerm = string.Empty;
+        await OnSearch.InvokeAsync(searchTerm);
+    }
+
+    private async Task ClearAllFilters()
+    {
+        searchTerm = string.Empty;
+        _selectedDateFilter = string.Empty;
+        _selectedSort = string.Empty;
+        fromDate = null;
+        toDate = null;
+        
+        await OnClearFilters.InvokeAsync();
+    }
+}

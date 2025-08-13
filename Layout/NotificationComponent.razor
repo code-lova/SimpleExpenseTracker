@@ -1,0 +1,66 @@
+@inject NotificationService NotificationService
+@implements IDisposable
+
+@if (NotificationService.IsVisible)
+{
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1055;">
+        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header @GetHeaderClass()">
+                <i class="@GetIcon() me-2"></i>
+                <strong class="me-auto">@GetTitle()</strong>
+                <button type="button" class="btn-close" @onclick="NotificationService.Hide" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                @NotificationService.Message
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        NotificationService.StateHasChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        NotificationService.StateHasChanged -= StateHasChanged;
+    }
+
+    private string GetHeaderClass()
+    {
+        return NotificationService.Type switch
+        {
+            NotificationType.Success => "text-bg-success",
+            NotificationType.Error => "text-bg-danger",
+            NotificationType.Warning => "text-bg-warning",
+            NotificationType.Info => "text-bg-info",
+            _ => "text-bg-primary"
+        };
+    }
+
+    private string GetIcon()
+    {
+        return NotificationService.Type switch
+        {
+            NotificationType.Success => "bi bi-check-circle-fill",
+            NotificationType.Error => "bi bi-exclamation-triangle-fill",
+            NotificationType.Warning => "bi bi-exclamation-circle-fill",
+            NotificationType.Info => "bi bi-info-circle-fill",
+            _ => "bi bi-info-circle-fill"
+        };
+    }
+
+    private string GetTitle()
+    {
+        return NotificationService.Type switch
+        {
+            NotificationType.Success => "Success",
+            NotificationType.Error => "Error",
+            NotificationType.Warning => "Warning",
+            NotificationType.Info => "Information",
+            _ => "Notification"
+        };
+    }
+}
