@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "SimpleExpenseTracker",
   "resources": {
-    "hash": "sha256-5ZwtoQT1XN1q22uc1vUPe/Rc6ukNZlQEn8fHbHBfmyA=",
+    "hash": "sha256-gm+pufwfCBwtoESwPGI52AzhRbwBmpJdyAZlh1dM62Q=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-VdKq87/z5NIxZKmuM+fv38XF+RcEb/bg3jVBwQSfwP4="
     },
@@ -34,7 +34,7 @@
       "Microsoft.Extensions.Primitives.wasm": "sha256-xyqqv0SMCahnrOs+p5QYDHoh/BAYlbNtyjTTpqmRW/g=",
       "Microsoft.JSInterop.wasm": "sha256-QW+pPmDNx5K3v3M0bZJdulNnbIks8wdhOt0x4WOsJNU=",
       "Microsoft.JSInterop.WebAssembly.wasm": "sha256-Px6z5DU/gBGylV4ob9sdcAVH4KKxpByP7WNTn+lZUro=",
-      "SimpleExpenseTracker.wasm": "sha256-lKmB0U2U3vWeSujm/3XuOuGT9E0q8jm7flWcHAw8yf8=",
+      "SimpleExpenseTracker.wasm": "sha256-1QYFuVnWRfFAGR5/f6rl3Xme/UutXZpTIUDrHdavKWI=",
       "System.Collections.Concurrent.wasm": "sha256-znmnywDknYlvqSsoCy+55f9PyhdLn4cQ5Z3nVwJb9OE=",
       "System.Collections.NonGeneric.wasm": "sha256-Lbktk1MKuy23aCjAFE4MGOLwZd5jVnSjk6B3LNmd/HU=",
       "System.Collections.Specialized.wasm": "sha256-Vf0sFqpKGkuyC7jzIcTiAQSatq49n5GP6T+h8ozTwQ8=",

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yGx45XOFJeirr5HjWOcmjwOpJ2/WXUhbZ+JfAsadfz8=",
+  "Hash": "E5iggssOn0Q8FEnSHD+QOUGKW8doRVh+G+JPAKOOY18=",
   "Source": "SimpleExpenseTracker",
   "BasePath": "/",
   "Mode": "Root",
@@ -41,7 +41,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/wwwroot/_framework/dotnet.js",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/dotnet.js",
       "AssetKind": "Publish",
@@ -62,7 +62,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/wwwroot/_framework/dotnet.native.js",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/dotnet.native.js",
       "AssetKind": "Publish",
@@ -83,7 +83,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/wwwroot/_framework/dotnet.native.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/dotnet.native.wasm",
       "AssetKind": "Publish",
@@ -104,7 +104,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/wwwroot/_framework/dotnet.runtime.js",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/dotnet.runtime.js",
       "AssetKind": "Publish",
@@ -125,7 +125,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/wwwroot/_framework/icudt_CJK.dat",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/icudt_CJK.dat",
       "AssetKind": "Publish",
@@ -146,7 +146,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/wwwroot/_framework/icudt_EFIGS.dat",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/icudt_EFIGS.dat",
       "AssetKind": "Publish",
@@ -167,7 +167,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/wwwroot/_framework/icudt_no_CJK.dat",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/icudt_no_CJK.dat",
       "AssetKind": "Publish",
@@ -188,7 +188,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/blazor.publish.boot.json",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/blazor.boot.json",
       "AssetKind": "Publish",
@@ -199,8 +199,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "manifest",
-      "Fingerprint": "o054ma2ldo",
-      "Integrity": "mG+YpEUVp0unUOAJOfS9RKA9iJYo2bBcHeLYFosb2Wo=",
+      "Fingerprint": "zcrb6u4pzq",
+      "Integrity": "vSIjHoNK0kqJ+weahNJqdR7uxVn1PPN6Be/uavhS9gk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "obj/Release/net8.0/blazor.publish.boot.json"
@@ -209,7 +209,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/4w6zv3ms0s-xjx70hiola.gz",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/dotnet.runtime.js.gz",
       "AssetKind": "Publish",
@@ -230,7 +230,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/bglv6y3wvl-rqxhp8973g.gz",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/dotnet.js.gz",
       "AssetKind": "Publish",
@@ -272,7 +272,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/mjmby8tfh1-keyssdiug3.gz",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/dotnet.native.wasm.gz",
       "AssetKind": "Publish",
@@ -293,7 +293,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/ncjreqx4d2-xteh9p4yli.gz",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/dotnet.native.js.gz",
       "AssetKind": "Publish",
@@ -1382,7 +1382,7 @@
       "OriginalItemSpec": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.Extensions.DependencyInjection.Abstractions.wasm"
     },
     {
-      "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/j4td2hgdvk-o054ma2ldo.br",
+      "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/j4td2hgdvk-zcrb6u4pzq.br",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
       "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/",
@@ -1396,14 +1396,14 @@
       "RelatedAsset": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/blazor.publish.boot.json",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "br",
-      "Fingerprint": "myiodf30tp",
-      "Integrity": "/m78ZabP9PR20cfKxqJFq87RjDelj1pnPpzidHH2ZQY=",
+      "Fingerprint": "ux1z75ru50",
+      "Integrity": "bkBXSaA06fTxcq6YMF7Xl70s/vsh2TNvHp322WINpeI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/blazor.publish.boot.json"
     },
     {
-      "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/j4td2hgdvk-o054ma2ldo.gz",
+      "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/j4td2hgdvk-zcrb6u4pzq.gz",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
       "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/",
@@ -1417,8 +1417,8 @@
       "RelatedAsset": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/blazor.publish.boot.json",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "73bk96od2r",
-      "Integrity": "3UlacAJ1YKGRm0weuFtl5YKP50Jqbjt+t1Fhp3vLYG4=",
+      "Fingerprint": "3p7vwf7w77",
+      "Integrity": "t2ReOSbAWhQ2f83l50IVXlOAp7oJsjZc3FnByCefa2k=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/blazor.publish.boot.json"
@@ -1865,7 +1865,7 @@
       "OriginalItemSpec": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/wwwroot/_framework/icudt_EFIGS.dat"
     },
     {
-      "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/r9dmivgbtu-ky9s9vr8hg.br",
+      "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/r9dmivgbtu-l8qgi7dms2.br",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
       "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/",
@@ -1879,14 +1879,14 @@
       "RelatedAsset": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/SimpleExpenseTracker.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "br",
-      "Fingerprint": "hjijlsdn17",
-      "Integrity": "Y2bFTluGKljICWFOsZVvj4ZDtL8oyrpAinj82LwN1w0=",
+      "Fingerprint": "hzluuvcsvw",
+      "Integrity": "zUSjlqhL/MgCbNPli2APDWnPHV10M+Md3qJWmF6c9Rw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/SimpleExpenseTracker.wasm"
     },
     {
-      "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/r9dmivgbtu-ky9s9vr8hg.gz",
+      "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/r9dmivgbtu-l8qgi7dms2.gz",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
       "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/",
@@ -1900,8 +1900,8 @@
       "RelatedAsset": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/SimpleExpenseTracker.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "t1vvd7hyhv",
-      "Integrity": "DxjwlxzP3omCfgSQRBZv+kL24A6IoPr5lvfrc8umH2Q=",
+      "Fingerprint": "aqdmq4rkr4",
+      "Integrity": "/nb85FhMRR/JrFNXwz0UEZYKQz4BB3vn4dFLq6m47r8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/SimpleExpenseTracker.wasm"
@@ -2519,7 +2519,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Blazored.LocalStorage.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Blazored.LocalStorage.wasm",
       "AssetKind": "Publish",
@@ -2540,7 +2540,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.AspNetCore.Components.Forms.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.AspNetCore.Components.Forms.wasm",
       "AssetKind": "Publish",
@@ -2561,7 +2561,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.AspNetCore.Components.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.AspNetCore.Components.wasm",
       "AssetKind": "Publish",
@@ -2582,7 +2582,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.AspNetCore.Components.Web.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.AspNetCore.Components.Web.wasm",
       "AssetKind": "Publish",
@@ -2603,7 +2603,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.AspNetCore.Components.WebAssembly.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.AspNetCore.Components.WebAssembly.wasm",
       "AssetKind": "Publish",
@@ -2624,7 +2624,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.Extensions.Configuration.Abstractions.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.Extensions.Configuration.Abstractions.wasm",
       "AssetKind": "Publish",
@@ -2645,7 +2645,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.Extensions.Configuration.Json.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.Extensions.Configuration.Json.wasm",
       "AssetKind": "Publish",
@@ -2666,7 +2666,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.Extensions.Configuration.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.Extensions.Configuration.wasm",
       "AssetKind": "Publish",
@@ -2687,7 +2687,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.Extensions.DependencyInjection.Abstractions.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.Extensions.DependencyInjection.Abstractions.wasm",
       "AssetKind": "Publish",
@@ -2708,7 +2708,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.Extensions.DependencyInjection.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.Extensions.DependencyInjection.wasm",
       "AssetKind": "Publish",
@@ -2729,7 +2729,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.Extensions.Logging.Abstractions.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.Extensions.Logging.Abstractions.wasm",
       "AssetKind": "Publish",
@@ -2750,7 +2750,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.Extensions.Logging.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.Extensions.Logging.wasm",
       "AssetKind": "Publish",
@@ -2771,7 +2771,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.Extensions.Options.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.Extensions.Options.wasm",
       "AssetKind": "Publish",
@@ -2792,7 +2792,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.Extensions.Primitives.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.Extensions.Primitives.wasm",
       "AssetKind": "Publish",
@@ -2813,7 +2813,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.JSInterop.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.JSInterop.wasm",
       "AssetKind": "Publish",
@@ -2834,7 +2834,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/Microsoft.JSInterop.WebAssembly.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/Microsoft.JSInterop.WebAssembly.wasm",
       "AssetKind": "Publish",
@@ -2855,7 +2855,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/SimpleExpenseTracker.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/SimpleExpenseTracker.wasm",
       "AssetKind": "Publish",
@@ -2866,8 +2866,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "runtime",
-      "Fingerprint": "ky9s9vr8hg",
-      "Integrity": "lKmB0U2U3vWeSujm/3XuOuGT9E0q8jm7flWcHAw8yf8=",
+      "Fingerprint": "l8qgi7dms2",
+      "Integrity": "1QYFuVnWRfFAGR5/f6rl3Xme/UutXZpTIUDrHdavKWI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/SimpleExpenseTracker.wasm"
@@ -2876,7 +2876,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Collections.Concurrent.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Collections.Concurrent.wasm",
       "AssetKind": "Publish",
@@ -2897,7 +2897,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Collections.NonGeneric.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Collections.NonGeneric.wasm",
       "AssetKind": "Publish",
@@ -2918,7 +2918,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Collections.Specialized.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Collections.Specialized.wasm",
       "AssetKind": "Publish",
@@ -2939,7 +2939,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Collections.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Collections.wasm",
       "AssetKind": "Publish",
@@ -2960,7 +2960,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.ComponentModel.Annotations.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.ComponentModel.Annotations.wasm",
       "AssetKind": "Publish",
@@ -2981,7 +2981,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.ComponentModel.Primitives.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.ComponentModel.Primitives.wasm",
       "AssetKind": "Publish",
@@ -3002,7 +3002,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.ComponentModel.TypeConverter.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.ComponentModel.TypeConverter.wasm",
       "AssetKind": "Publish",
@@ -3023,7 +3023,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.ComponentModel.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.ComponentModel.wasm",
       "AssetKind": "Publish",
@@ -3044,7 +3044,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Console.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Console.wasm",
       "AssetKind": "Publish",
@@ -3065,7 +3065,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Diagnostics.DiagnosticSource.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Diagnostics.DiagnosticSource.wasm",
       "AssetKind": "Publish",
@@ -3086,7 +3086,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Linq.Expressions.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Linq.Expressions.wasm",
       "AssetKind": "Publish",
@@ -3107,7 +3107,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Linq.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Linq.wasm",
       "AssetKind": "Publish",
@@ -3128,7 +3128,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Memory.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Memory.wasm",
       "AssetKind": "Publish",
@@ -3149,7 +3149,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Net.Http.Json.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Net.Http.Json.wasm",
       "AssetKind": "Publish",
@@ -3170,7 +3170,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Net.Http.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Net.Http.wasm",
       "AssetKind": "Publish",
@@ -3191,7 +3191,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Net.Mail.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Net.Mail.wasm",
       "AssetKind": "Publish",
@@ -3212,7 +3212,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Net.Primitives.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Net.Primitives.wasm",
       "AssetKind": "Publish",
@@ -3233,7 +3233,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.ObjectModel.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.ObjectModel.wasm",
       "AssetKind": "Publish",
@@ -3254,7 +3254,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Private.CoreLib.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Private.CoreLib.wasm",
       "AssetKind": "Publish",
@@ -3275,7 +3275,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Private.Uri.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Private.Uri.wasm",
       "AssetKind": "Publish",
@@ -3296,7 +3296,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Runtime.InteropServices.JavaScript.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Runtime.InteropServices.JavaScript.wasm",
       "AssetKind": "Publish",
@@ -3317,7 +3317,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Runtime.Serialization.Primitives.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Runtime.Serialization.Primitives.wasm",
       "AssetKind": "Publish",
@@ -3338,7 +3338,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Runtime.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Runtime.wasm",
       "AssetKind": "Publish",
@@ -3359,7 +3359,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Text.Encodings.Web.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Text.Encodings.Web.wasm",
       "AssetKind": "Publish",
@@ -3380,7 +3380,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Text.Json.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Text.Json.wasm",
       "AssetKind": "Publish",
@@ -3401,7 +3401,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Text.RegularExpressions.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Text.RegularExpressions.wasm",
       "AssetKind": "Publish",
@@ -3422,7 +3422,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.Threading.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.Threading.wasm",
       "AssetKind": "Publish",
@@ -3443,7 +3443,7 @@
       "Identity": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/webcil/publish/System.wasm",
       "SourceId": "SimpleExpenseTracker",
       "SourceType": "Computed",
-      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/",
+      "ContentRoot": "/Users/ebizo/Applications/SimpleExpenseTracker/publish/wwwroot/",
       "BasePath": "/",
       "RelativePath": "_framework/System.wasm",
       "AssetKind": "Publish",
@@ -4510,11 +4510,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"mG+YpEUVp0unUOAJOfS9RKA9iJYo2bBcHeLYFosb2Wo=\""
+          "Value": "\"vSIjHoNK0kqJ+weahNJqdR7uxVn1PPN6Be/uavhS9gk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:30 GMT"
+          "Value": "Wed, 13 Aug 2025 19:58:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4524,18 +4524,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-mG+YpEUVp0unUOAJOfS9RKA9iJYo2bBcHeLYFosb2Wo="
+          "Value": "sha256-vSIjHoNK0kqJ+weahNJqdR7uxVn1PPN6Be/uavhS9gk="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json",
-      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/j4td2hgdvk-o054ma2ldo.br",
+      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/j4td2hgdvk-zcrb6u4pzq.br",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "br",
-          "Quality": "0.000425170068"
+          "Quality": "0.000425350915"
         }
       ],
       "ResponseHeaders": [
@@ -4545,15 +4545,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2351"
+          "Value": "2350"
         },
         {
           "Name": "ETag",
-          "Value": "\"/m78ZabP9PR20cfKxqJFq87RjDelj1pnPpzidHH2ZQY=\""
+          "Value": "\"bkBXSaA06fTxcq6YMF7Xl70s/vsh2TNvHp322WINpeI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:30 GMT"
+          "Value": "Wed, 13 Aug 2025 19:58:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4573,24 +4573,24 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"mG+YpEUVp0unUOAJOfS9RKA9iJYo2bBcHeLYFosb2Wo=\""
+          "Value": "W/\"vSIjHoNK0kqJ+weahNJqdR7uxVn1PPN6Be/uavhS9gk=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-mG+YpEUVp0unUOAJOfS9RKA9iJYo2bBcHeLYFosb2Wo="
+          "Value": "sha256-vSIjHoNK0kqJ+weahNJqdR7uxVn1PPN6Be/uavhS9gk="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json",
-      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/j4td2hgdvk-o054ma2ldo.gz",
+      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/j4td2hgdvk-zcrb6u4pzq.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000395726157"
+          "Quality": "0.000396039604"
         }
       ],
       "ResponseHeaders": [
@@ -4600,15 +4600,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2526"
+          "Value": "2524"
         },
         {
           "Name": "ETag",
-          "Value": "\"3UlacAJ1YKGRm0weuFtl5YKP50Jqbjt+t1Fhp3vLYG4=\""
+          "Value": "\"t2ReOSbAWhQ2f83l50IVXlOAp7oJsjZc3FnByCefa2k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:30 GMT"
+          "Value": "Wed, 13 Aug 2025 19:58:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4628,19 +4628,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"mG+YpEUVp0unUOAJOfS9RKA9iJYo2bBcHeLYFosb2Wo=\""
+          "Value": "W/\"vSIjHoNK0kqJ+weahNJqdR7uxVn1PPN6Be/uavhS9gk=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-mG+YpEUVp0unUOAJOfS9RKA9iJYo2bBcHeLYFosb2Wo="
+          "Value": "sha256-vSIjHoNK0kqJ+weahNJqdR7uxVn1PPN6Be/uavhS9gk="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json.br",
-      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/j4td2hgdvk-o054ma2ldo.br",
+      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/j4td2hgdvk-zcrb6u4pzq.br",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4649,7 +4649,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2351"
+          "Value": "2350"
         },
         {
           "Name": "Content-Type",
@@ -4657,11 +4657,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/m78ZabP9PR20cfKxqJFq87RjDelj1pnPpzidHH2ZQY=\""
+          "Value": "\"bkBXSaA06fTxcq6YMF7Xl70s/vsh2TNvHp322WINpeI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:30 GMT"
+          "Value": "Wed, 13 Aug 2025 19:58:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4679,13 +4679,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-/m78ZabP9PR20cfKxqJFq87RjDelj1pnPpzidHH2ZQY="
+          "Value": "sha256-bkBXSaA06fTxcq6YMF7Xl70s/vsh2TNvHp322WINpeI="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json.gz",
-      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/j4td2hgdvk-o054ma2ldo.gz",
+      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/j4td2hgdvk-zcrb6u4pzq.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4694,7 +4694,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2526"
+          "Value": "2524"
         },
         {
           "Name": "Content-Type",
@@ -4702,11 +4702,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"3UlacAJ1YKGRm0weuFtl5YKP50Jqbjt+t1Fhp3vLYG4=\""
+          "Value": "\"t2ReOSbAWhQ2f83l50IVXlOAp7oJsjZc3FnByCefa2k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:30 GMT"
+          "Value": "Wed, 13 Aug 2025 19:58:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4724,7 +4724,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-3UlacAJ1YKGRm0weuFtl5YKP50Jqbjt+t1Fhp3vLYG4="
+          "Value": "sha256-t2ReOSbAWhQ2f83l50IVXlOAp7oJsjZc3FnByCefa2k="
         }
       ]
     },
@@ -4790,7 +4790,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:02 GMT"
+          "Value": "Wed, 01 Nov 2023 01:05:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4943,7 +4943,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:02 GMT"
+          "Value": "Wed, 01 Nov 2023 01:05:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5264,7 +5264,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:03 GMT"
+          "Value": "Thu, 17 Oct 2024 19:00:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5417,7 +5417,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:03 GMT"
+          "Value": "Thu, 17 Oct 2024 19:00:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5501,7 +5501,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:03 GMT"
+          "Value": "Thu, 17 Oct 2024 19:00:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5654,7 +5654,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:03 GMT"
+          "Value": "Thu, 17 Oct 2024 19:00:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5738,7 +5738,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:03 GMT"
+          "Value": "Thu, 17 Oct 2024 19:00:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5891,7 +5891,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:03 GMT"
+          "Value": "Thu, 17 Oct 2024 19:00:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5975,7 +5975,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:03 GMT"
+          "Value": "Thu, 17 Oct 2024 19:00:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6128,7 +6128,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:03 GMT"
+          "Value": "Thu, 17 Oct 2024 19:00:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10418,12 +10418,12 @@
     },
     {
       "Route": "_framework/SimpleExpenseTracker.wasm",
-      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/r9dmivgbtu-ky9s9vr8hg.br",
+      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/r9dmivgbtu-l8qgi7dms2.br",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "br",
-          "Quality": "0.000020777494"
+          "Quality": "0.000020712081"
         }
       ],
       "ResponseHeaders": [
@@ -10433,15 +10433,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "48128"
+          "Value": "48280"
         },
         {
           "Name": "ETag",
-          "Value": "\"Y2bFTluGKljICWFOsZVvj4ZDtL8oyrpAinj82LwN1w0=\""
+          "Value": "\"zUSjlqhL/MgCbNPli2APDWnPHV10M+Md3qJWmF6c9Rw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:29 GMT"
+          "Value": "Wed, 13 Aug 2025 19:56:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10461,24 +10461,24 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"lKmB0U2U3vWeSujm/3XuOuGT9E0q8jm7flWcHAw8yf8=\""
+          "Value": "W/\"1QYFuVnWRfFAGR5/f6rl3Xme/UutXZpTIUDrHdavKWI=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-lKmB0U2U3vWeSujm/3XuOuGT9E0q8jm7flWcHAw8yf8="
+          "Value": "sha256-1QYFuVnWRfFAGR5/f6rl3Xme/UutXZpTIUDrHdavKWI="
         }
       ]
     },
     {
       "Route": "_framework/SimpleExpenseTracker.wasm",
-      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/r9dmivgbtu-ky9s9vr8hg.gz",
+      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/r9dmivgbtu-l8qgi7dms2.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000016114997"
+          "Quality": "0.000016114737"
         }
       ],
       "ResponseHeaders": [
@@ -10488,15 +10488,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "62053"
+          "Value": "62054"
         },
         {
           "Name": "ETag",
-          "Value": "\"DxjwlxzP3omCfgSQRBZv+kL24A6IoPr5lvfrc8umH2Q=\""
+          "Value": "\"/nb85FhMRR/JrFNXwz0UEZYKQz4BB3vn4dFLq6m47r8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:29 GMT"
+          "Value": "Wed, 13 Aug 2025 19:56:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10516,13 +10516,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"lKmB0U2U3vWeSujm/3XuOuGT9E0q8jm7flWcHAw8yf8=\""
+          "Value": "W/\"1QYFuVnWRfFAGR5/f6rl3Xme/UutXZpTIUDrHdavKWI=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-lKmB0U2U3vWeSujm/3XuOuGT9E0q8jm7flWcHAw8yf8="
+          "Value": "sha256-1QYFuVnWRfFAGR5/f6rl3Xme/UutXZpTIUDrHdavKWI="
         }
       ]
     },
@@ -10545,11 +10545,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"lKmB0U2U3vWeSujm/3XuOuGT9E0q8jm7flWcHAw8yf8=\""
+          "Value": "\"1QYFuVnWRfFAGR5/f6rl3Xme/UutXZpTIUDrHdavKWI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:29 GMT"
+          "Value": "Wed, 13 Aug 2025 19:56:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10559,13 +10559,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-lKmB0U2U3vWeSujm/3XuOuGT9E0q8jm7flWcHAw8yf8="
+          "Value": "sha256-1QYFuVnWRfFAGR5/f6rl3Xme/UutXZpTIUDrHdavKWI="
         }
       ]
     },
     {
       "Route": "_framework/SimpleExpenseTracker.wasm.br",
-      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/r9dmivgbtu-ky9s9vr8hg.br",
+      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/r9dmivgbtu-l8qgi7dms2.br",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10574,7 +10574,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "48128"
+          "Value": "48280"
         },
         {
           "Name": "Content-Type",
@@ -10582,11 +10582,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Y2bFTluGKljICWFOsZVvj4ZDtL8oyrpAinj82LwN1w0=\""
+          "Value": "\"zUSjlqhL/MgCbNPli2APDWnPHV10M+Md3qJWmF6c9Rw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:29 GMT"
+          "Value": "Wed, 13 Aug 2025 19:56:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10604,13 +10604,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Y2bFTluGKljICWFOsZVvj4ZDtL8oyrpAinj82LwN1w0="
+          "Value": "sha256-zUSjlqhL/MgCbNPli2APDWnPHV10M+Md3qJWmF6c9Rw="
         }
       ]
     },
     {
       "Route": "_framework/SimpleExpenseTracker.wasm.gz",
-      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/r9dmivgbtu-ky9s9vr8hg.gz",
+      "AssetFile": "/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/publish/r9dmivgbtu-l8qgi7dms2.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10619,7 +10619,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "62053"
+          "Value": "62054"
         },
         {
           "Name": "Content-Type",
@@ -10627,11 +10627,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"DxjwlxzP3omCfgSQRBZv+kL24A6IoPr5lvfrc8umH2Q=\""
+          "Value": "\"/nb85FhMRR/JrFNXwz0UEZYKQz4BB3vn4dFLq6m47r8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 13 Aug 2025 19:36:29 GMT"
+          "Value": "Wed, 13 Aug 2025 19:56:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10649,7 +10649,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-DxjwlxzP3omCfgSQRBZv+kL24A6IoPr5lvfrc8umH2Q="
+          "Value": "sha256-/nb85FhMRR/JrFNXwz0UEZYKQz4BB3vn4dFLq6m47r8="
         }
       ]
     },

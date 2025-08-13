@@ -1,0 +1,7 @@
+/Users/ebizo/Applications/SimpleExpenseTracker/publish/publish/web.config
+/Users/ebizo/Applications/SimpleExpenseTracker/publish/publish/emcc-props.json
+/Users/ebizo/Applications/SimpleExpenseTracker/publish/publish/SimpleExpenseTracker.staticwebassets.endpoints.json
+/Users/ebizo/Applications/SimpleExpenseTracker/publish/publish/wwwroot/sample-data/weather.json
+/Users/ebizo/Applications/SimpleExpenseTracker/publish/publish/wwwroot/_framework/blazor.boot.json
+/Users/ebizo/Applications/SimpleExpenseTracker/publish/emcc-props.json
+/Users/ebizo/Applications/SimpleExpenseTracker/publish/web.config

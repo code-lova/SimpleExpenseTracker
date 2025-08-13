@@ -1025,9 +1025,6 @@
 /Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/3oerjp3ta4-tptq2av103.gz
 /Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/17vqlu086k-lfu7j35m59.gz
 /Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/t12qfna40t-oyz0vx2fzb.gz
-/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/2naqbdfkcf-ky9s9vr8hg.gz
-/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/vs2q708u80-j354km1u8o.gz
-/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/iugoig9bbc-rd97m331c0.gz
 /Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/staticwebassets.build.json
 /Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/staticwebassets.development.json
 /Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/staticwebassets.build.endpoints.json
@@ -1042,3 +1039,11 @@
 /Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/refint/SimpleExpenseTracker.dll
 /Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/SimpleExpenseTracker.pdb
 /Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/ref/SimpleExpenseTracker.dll
+/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/2naqbdfkcf-l8qgi7dms2.gz
+/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/vs2q708u80-n514f9i8j3.gz
+/Users/ebizo/Applications/SimpleExpenseTracker/obj/Release/net8.0/compressed/iugoig9bbc-rg8iex2isv.gz
+/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/web.config
+/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/emcc-props.json
+/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/sample-data/weather.json
+/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/SimpleExpenseTracker.staticwebassets.endpoints.json
+/Users/ebizo/Applications/SimpleExpenseTracker/bin/Release/net8.0/publish/wwwroot/_framework/blazor.boot.json
